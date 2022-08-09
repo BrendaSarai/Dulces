@@ -10,7 +10,19 @@ class Dulce extends BaseController
 
   {
 
-      $tablaDulce = new \App\Models\tablaDulce;
+      /*$tablaDulce = new \App\Models\tablaDulce;
+      $dulces = $tablaDulce ->findAll();
+      $datos = array(
+        "dulces"=> $dulces,
+        "numeroDulces" => sizeof($dulces),
+
+      );*/
+
+      return view('materialize/pages/dulci');
+  }
+
+  public function dulces(){
+    $tablaDulce = new \App\Models\tablaDulce;
       $dulces = $tablaDulce ->findAll();
       $datos = array(
         "dulces"=> $dulces,
@@ -20,20 +32,31 @@ class Dulce extends BaseController
 
       return view('dashboard/dulce',$datos);
   }
+
+  public function buscar_dulce($nombre){
+      $tablaDulce = new \App\Models\tablaDulce;
+      $dulce = $tablaDulce->where('nombre',$nombre)->first();    
+      $datos = array(
+          "dulce" => $dulce
+      );
+      
+      return view('materialize/pages/venta',$datos);
+  }
+
   public function guardar()
   {
 
    $datos = array(
-     'fecha_creaction' => date("Y-m-d"),
      "nombre" => $this->request-> getPost("nombre"),
-     "descripcion" => $this->request-> getPost("cantidad"),
+     "descripcion" => $this->request-> getPost("descripcion"),
      "marca" => $this->request-> getPost("marca"),
+     "precio" => $this->request-> getPost("precio")
 
 
    );
    $tablaDulce = new \App\Models\tablaDulce;
    if($tablaDulce->insert($datos)){
-     return redirect()->route("dulce");
+     return redirect()->route("dulces");
 
    }
   }
@@ -44,16 +67,16 @@ class Dulce extends BaseController
     $id_Dulce = $this->request->getPost("id_Dulce");
 
    $datos = array(
-     'fecha_actualizacion' => date("Y-m-d"),
      "nombre" => $this->request-> getPost("nombre"),
      "descripcion" => $this->request-> getPost("descripcion"),
      "marca" => $this->request-> getPost("marca"),
+     "precio" => $this->request-> getPost("precio")
 
 
    );
    $tablaDulce = new \App\Models\tablaDulce;
    if($tablaDulce->update($id_Dulce,$datos)){
-     return redirect()->route("dulce");
+     return redirect()->route("dulces");
 
    }
   }

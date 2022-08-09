@@ -185,7 +185,7 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a href="<?= route_to("dulce");?>" class="nav-link active">
+                <a href="<?= route_to("dulces");?>" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dulces</p>
                 </a>
@@ -246,6 +246,13 @@
                               <div class="form-group">
                                 <label for="">Correo</label>
                                 <input type="text" class="form-control" id="correo" name="correo" placeholder="Ingresa tu correo">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Rol</label>
+                                <select name="rol" class="form-control">
+                                  <option value="1">Consumidor</option>
+                                  <option value="2">Administrador</option>
+                                </select>
                               </div>
                               <div class="form-group">
                                 <label for="">Contrasena</label>
@@ -336,7 +343,7 @@
                               </thead>
                               <tbody>
                                 <?php
-                      function imprimirModal($usuario){
+                      function imprimirModal($usuario, $roles){
                         echo'
                         <div class="modal fade" id="modal'.$usuario->id_usuario.'">
                         <div class="modal-dialog">
@@ -358,8 +365,10 @@
                               '.form_input("materno",$usuario->materno,['class'=>'form-control', 'placeholder'=>'Ingresa tu ap materno ']).'
                               '.form_label("Correo").'
                               '.form_input("correo",$usuario->correo,['class'=>'form-control', 'placeholder'=>'Ingresa tu correo']).'
+                              '.form_label("Rol").'
+                              '.form_dropdown('rol', $roles, $usuario->rol, ['class'=>'form-control']).'
                               '.form_label("Contraseña").'
-                              '.form_password("contrasena", $usuario->contrasena,['class'=>'form-control' , 'placeholder'=>'Ingresa tu contraseña']).'
+                              '.form_password("contrasena", "",['class'=>'form-control' , 'placeholder'=>'Ingresa tu contraseña']).'
                               '.form_label("Contraseña").'
                               '.form_password("contrasena_dos","",['class'=>'form-control' , 'placeholder'=>'Verifica tu contraseña']).'
                             </div>
@@ -394,7 +403,7 @@
                             </table>
                             <?php
                 foreach ($Usuarios as $Usuario){
-                  imprimirModal($Usuario);
+                  imprimirModal($Usuario, $roles);
                 } ?>
                           </div>
                         </div>

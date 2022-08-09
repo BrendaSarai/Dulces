@@ -17,6 +17,9 @@
 
 </head>
 <body>
+<?php
+  $session = session();
+?>
   <!--Menu de navegación -->
   <nav class="black" role="navigation">
     <div class="nav-wrapper container ">
@@ -31,7 +34,13 @@
         <li><a href="<?= route_to("home");?>">Inicio</a></li>
         <li><a href="<?= route_to("dulci");?>">Dulces </a></li>
         <li><a href="<?= route_to("marcas");?>">Receta</a></li>
-        <li><a href="<?= route_to("inicio");?>" class="btn white black-text">Ingresar</a></li>
+        <?php
+          if ($session->nombre != null){
+          echo '<li><a href="'.route_to("logout").'" class="btn white black-text">Cerrar Sesión</a></li>';
+          }else{
+            echo '<li><a href="'.route_to("inicio").'" class="btn white black-text">Ingresar</a><li>';
+          }
+        ?>
 
       </ul>
 

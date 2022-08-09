@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class tablaDulce extends Model
+class TablaVentas extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'dulce';
-    protected $primaryKey       = 'id_Dulce';
+    protected $table            = 'ventas';
+    protected $primaryKey       = 'id_venta';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
-    protected $protectFields = true;
-    protected $allowedFields    = ['fecha_creaction','fecha_actualizacion','fecha_eliminacion','nombre','descripcion','marca','precio','id_Dulce'];
+    protected $protectFields    = true;
+    protected $allowedFields    = ['id_producto','id_usuario','producto','marca','cantidad','total','precio','estado','municipio'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,4 +22,5 @@ class tablaDulce extends Model
     protected $updatedField  = 'fecha_actualizacion';
     protected $deletedField  = 'fecha_eliminacion';
 
+    
 }

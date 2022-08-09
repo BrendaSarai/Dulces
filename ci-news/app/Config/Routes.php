@@ -43,16 +43,20 @@ $routes->get('/registro','LoginController::registro',['as'=>'registro']);
 $routes->get('/recuperar','LoginController::recuperar',['as'=>'recuperar']);
 $routes->get('/logout','LoginController::logout',['as'=>'logout']);
 $routes->get('/clear', 'DbController::clear');
+$routes -> post('guardar_usuario','Usuario::guardar');
 
 $routes->group('admin', ['filter'=>'sesion'], function ($routes){
   $routes -> get('dashboard','Dashboard::index',['as'=>'dashboard']);
   $routes -> get('dulce','Dulce::index',['as'=>'dulce']);
+  $routes -> get('dulces','Dulce::dulces',['as'=>'dulces']);
   $routes -> post('guardar_usuario','Usuario::guardar');
   $routes -> post('actualizar_usuario','Usuario::actualizar');
   $routes -> post('eliminar_usuario','Usuario::eliminar');
   $routes -> post('guardar_dulce','Dulce::guardar');
   $routes -> post('actualizar_dulce','Dulce::actualizar');
   $routes -> post('eliminar_dulce','Dulce::eliminar');
+  $routes->get('buscar_dulce/(:alpha)', 'Dulce::buscar_dulce/$1');
+  $routes -> post('guardar_venta','Ventas::guardar_venta');
 
 });
 

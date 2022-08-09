@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => '8c_ci4',
+        'database' => 'dulces',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

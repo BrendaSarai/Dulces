@@ -185,7 +185,7 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a href="<?= route_to("logout");?>" class="nav-link active">
+                <a href="<?= route_to("dulces");?>" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dulces</p>
                 </a>
@@ -233,25 +233,20 @@
                             <div class="card-body">
                               <div class="form-group">
                                 <label for="">Nombre</label>
-                                <select name="nombre" id="nombre" class="form-control">
-                                  <option value="palanqueta">Palanqueta</option>
-                                  <option value="alegria">Alegria</option>
-                                  <option value="mazapan">Mazapan</option>
-                                  <option value="oblea">Oblea</option>
-                                </select>
+                                <input type="text" class="form-control"  name="nombre" required >
+                              
                               </div>
                               <div class="form-group">
-                                <label for="">Cantidad</label>
-                                <input type="number" class="form-control" id="cantidad" name="cantidad" >
+                                <label for="">Descripción</label>
+                                <input type="text" class="form-control"  name="descripcion" required >
                               </div>
                               <div class="form-group">
                                 <label for="">Marca</label>
-                                <select class="form-control" id="marca" name="marca">
-                                  <option value="palanqueta">Palanqueta</option>
-                                  <option value="alegria">Alegria</option>
-                                  <option value="mazapan">Mazapan</option>
-                                  <option value="oblea">Oblea</option>
-                                </select>
+                                <input type="text" class="form-control" name="marca" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="">Precio</label>
+                                <input type="text" class="form-control" name="precio" required >
                               </div>
 
                             </div>
@@ -295,7 +290,7 @@
                                     success: function(resultado){
                                       var json= JSON.parse(resultado);
                                       if(json.resultado == true){
-                                        window.location.href = "<?= base_url("admin/dulce")?>"
+                                        window.location.href = "<?= base_url("admin/dulces")?>"
                                       }
                                     },
                                     error: function(error){
@@ -328,7 +323,8 @@
                                   <th>Fecha Creación</th>
                                   <th>Nombre</th>
                                   <th>Cantidad</th>
-                                  <th>Marcas</th>
+                                  <th>Marca</th>
+                                  <th>Precio</th>
 
                                   <th style="width: 40px">Acciones</th>
                                 </tr>
@@ -353,8 +349,10 @@
                               '.form_input("nombre",$dulce->nombre,['class'=>'form-control', 'placeholder'=>'Ingresa tu nombre']).'
                               '.form_label("Descripcion").'
                               '.form_input("descripcion",$dulce->descripcion,['class'=>'form-control', 'placeholder'=>'Ingresa tu descripcion']).'
-                              '.form_label("Marcas").'
+                              '.form_label("Marca").'
                               '.form_input("marca",$dulce->marca,['class'=>'form-control', 'placeholder'=>'Ingresa la marca ']).'
+                              '.form_label("Precio").'
+                              '.form_input("precio",$dulce->precio,['class'=>'form-control', 'placeholder'=>'Ingresa el precio ']).'
 
                             </div>
                             <div class="modal-footer justify-content-between">
@@ -377,6 +375,7 @@
                                       echo '<td>'.$dulce->nombre.'</td>';
                                       echo '<td>'.$dulce->descripcion.'</td>';
                                       echo '<td>'.$dulce->marca.'</td>';
+                                      echo '<td>'.$dulce->precio.'</td>';
 
                                      echo '<td><button class="btn btn-sm btn-info float-left" data-toggle="modal" data-target="#modal'.$dulce->id_Dulce.'">Actualizar</button>';
                                     echo '<button class="btn btn-sm btn-danger float-left" onclick="mostrarAlerta('.$dulce->id_Dulce.')" >Eliminar</button></td>';

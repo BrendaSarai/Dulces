@@ -10,15 +10,28 @@ class Usuario extends BaseController
     {
      $contrasena= $this->request-> getPost("contrasena");
      $contrasena_dos=hash("sha256",$contrasena);
-     $datos = array(
-       'fecha_creaction' => date("Y-m-d"),
-       "nombre" => $this->request-> getPost("nombre"),
-       "paterno" => $this->request-> getPost("paterno"),
-       "materno" => $this->request-> getPost("materno"),
-       "correo" => $this->request-> getPost("correo"),
-       "contrasena" => $contrasena_dos
+     $rol = $this->request-> getPost("rol");
 
-     );
+     if($rol != null){
+      $datos = array(
+        "nombre" => $this->request-> getPost("nombre"),
+        "paterno" => $this->request-> getPost("paterno"),
+        "materno" => $this->request-> getPost("materno"),
+        "correo" => $this->request-> getPost("correo"),
+        "rol" => $rol,
+        "contrasena" => $contrasena_dos
+      );
+     }else{
+      $datos = array(
+        "nombre" => $this->request-> getPost("nombre"),
+        "paterno" => $this->request-> getPost("paterno"),
+        "materno" => $this->request-> getPost("materno"),
+        "correo" => $this->request-> getPost("correo"),
+        "rol" => 1,
+        "contrasena" => $contrasena_dos
+      );
+     }
+     
      $tablaUsuario = new \App\Models\TablaUsuario;
      if($tablaUsuario->insert($datos)){
        return redirect()->route("dashboard");
@@ -33,11 +46,11 @@ class Usuario extends BaseController
       $id_usuario = $this->request->getPost("id_usuario");
 
      $datos = array(
-       'fecha_actualizacion' => date("Y-m-d"),
        "nombre" => $this->request-> getPost("nombre"),
        "paterno" => $this->request-> getPost("paterno"),
        "materno" => $this->request-> getPost("materno"),
        "correo" => $this->request-> getPost("correo"),
+       "rol" => $this->request-> getPost("rol"),
        "contrasena" => $contrasena_dos
 
      );

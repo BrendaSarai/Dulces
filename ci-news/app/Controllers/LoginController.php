@@ -32,9 +32,15 @@ class LoginController extends BaseController
         $usuario = $TablaUsuario -> login($correo,$contrasena);
         if($usuario != null){
               $session = session();
+              $session->id_usuario=$usuario->id_usuario;
               $session->nombre= $usuario->nombre_completo;
               $session->correo = $usuario->correo;
-              return redirect()->to("dulce");
+              $session->rol = $usuario->rol;
+              if ($session->rol == 1){
+                return redirect()->to("dulce");
+              }else{
+                return redirect()->to("dashboard");
+              }
           }else{
               return redirect()->route("inicio");
           }
