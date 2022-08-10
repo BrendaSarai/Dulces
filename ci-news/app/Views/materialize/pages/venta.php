@@ -84,18 +84,18 @@
         <div class="row">
             <?= form_open("admin/guardar_venta"); ?>
                 <div class="row card-panel" action="col s12">
-                        <input type="hidden" value="<?php echo $dulce->id_Dulce; ?>" name="id_producto"  class="validate" required>
+                        <input type="hidden" value="<?php echo $dulce->id_Dulce; ?>" name="id_producto"  class="validate">
                  
                     <div class="input-field col s6">
-                        <input type="text" value="<?php echo $dulce->nombre; ?>" name="producto" disabled class="validate" required>
+                        <input type="text" value="<?php echo $dulce->nombre; ?>" name="producto" readonly class="validate">
                         <label for="nombre">Nombre</label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" value="<?php echo $dulce->marca; ?>" name="marca" disabled class="validate" required>
+                        <input type="text" value="<?php echo $dulce->marca; ?>" name="marca" readonly class="validate">
                         <label for="apellido">Marca</label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" value="<?php echo $dulce->precio; ?>" name="precio" disabled id="precio" class="validate" required>
+                        <input type="text" value="<?php echo $dulce->precio; ?>" name="precio" readonly id="precio" class="validate">
                         <label for="apellido">Precio</label>
                     </div>
                     <div class="input-field col s6">
@@ -103,7 +103,7 @@
                         <label for="apellido">Cantidad</label>
                     </div> 
                     <div class="input-field col s6">
-                        <input type="number" placeholder="0.0" name="total" id="total" class="validate" disabled required>
+                        <input type="number" placeholder="0.0" name="total" id="total" class="validate" readonly>
                         <label for="apellido">Total</label>
                     </div>
                     <div class="input-field col s6">
